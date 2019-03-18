@@ -32,16 +32,16 @@ class AntDesignThemePlugin {
       let link = document.createElement("link");
     
       link.type = "text/css";
-      link.rel = "stylesheet";
+      link.rel = "stylesheet/less";
       link.href = fileName;
     
       head.appendChild(link);
     }
      const path = require('path');
     
-     addCss(path.resolve(__dirname, '/resources/color.less'));
-     window.less = require(path.resolve(__dirname, '/resources/less.min.js'));
-     window.less.sheets.push(path.resolve(__dirname, '/resources/color.less'));
+     addCss(path.join(__dirname, '/plugins/color.less'));
+     window.less = require(path.join(__dirname, '/plugins/less.min.js'));
+     window.less.sheets.push(path.join(__dirname, '/plugins/color.less'));
      window.less.refresh();
     </script>
         `;
