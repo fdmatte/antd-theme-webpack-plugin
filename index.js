@@ -39,9 +39,9 @@ class AntDesignThemePlugin {
     }
      const path = require('path');
     
-     addCss(path.join(__dirname, '/resources/color.less'));
-     window.less = require(path.join(__dirname, '/resources/less.min.js'));
-     window.less.sheets.push(path.join(__dirname, '/resources/color.less'));
+     addCss(path.resolve(__dirname, '/resources/color.less'));
+     window.less = require(path.resolve(__dirname, '/resources/less.min.js'));
+     window.less.sheets.push(path.resolve(__dirname, '/resources/color.less'));
      window.less.refresh();
     </script>
         `;
