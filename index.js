@@ -23,16 +23,26 @@ class AntDesignThemePlugin {
     const options = this.options;
     compiler.plugin("emit", (compilation, callback) => {
       const less = `
-    <script>
-     const path = require('path');
-     window.less = require(path.join(__dirname, '/plugins/less.min.js'));
-    </script>
+
     <link rel="stylesheet/less" type="text/css" href="${options.publicPath}/color.less" />
     <script>
-      window.less = {
-        async: false,
-        env: 'production'
-      };
+    function addCss(fileName) {
+
+      let head = document.head;
+      let link = document.createElement("link");
+    
+      link.type = "text/css";
+      link.rel = "stylesheet";
+      link.href = fileName;
+    
+      head.appendChild(link);
+    }
+     const path = require('path');
+    
+     addCss(path.join(__dirname, '/resources/color.less'));
+     window.less = require(path.join(__dirname, '/resources/less.min.js'));
+     window.less.sheets.push(path.join(__dirname, '/resources/color.less'));
+     window.less.refresh();
     </script>
         `;
       if (
