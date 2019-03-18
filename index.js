@@ -23,9 +23,10 @@ class AntDesignThemePlugin {
     const options = this.options;
     compiler.plugin("emit", (compilation, callback) => {
       const less = `
+    <script>
      const path = require('path');
      window.less = require(path.join(__dirname, '/plugins/less.min.js'));
-     
+    </script>
     <link rel="stylesheet/less" type="text/css" href="${options.publicPath}/color.less" />
     <script>
       window.less = {
