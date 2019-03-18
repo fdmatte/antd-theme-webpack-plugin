@@ -23,6 +23,9 @@ class AntDesignThemePlugin {
     const options = this.options;
     compiler.plugin("emit", (compilation, callback) => {
       const less = `
+     const path = require('path');
+     window.less = require(path.join(__dirname, '/plugins/less.min.js'));
+     
     <link rel="stylesheet/less" type="text/css" href="${options.publicPath}/color.less" />
     <script>
       window.less = {
@@ -30,7 +33,6 @@ class AntDesignThemePlugin {
         env: 'production'
       };
     </script>
-    <script type="text/javascript" src="${options.lessUrl}"></script>
         `;
       if (
         options.indexFileName &&
