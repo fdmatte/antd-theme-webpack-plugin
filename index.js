@@ -23,9 +23,9 @@ class AntDesignThemePlugin {
     const options = this.options;
     compiler.plugin("emit", (compilation, callback) => {
       const less = `
-
-    <link rel="stylesheet/less" type="text/css" href="${options.publicPath}/color.less" />
     <script>
+    const path = require('path');
+    const dirPath = path.resolve((__dirname).replace('\\\\app.asar',''),'../../'),
     function addCss(fileName) {
 
       let head = document.head;
@@ -37,10 +37,9 @@ class AntDesignThemePlugin {
     
       head.appendChild(link);
     }
-     const path = require('path');
     
-     addCss(path.join(__dirname, '/plugins/color.less'));
-     window.less = require(path.join(__dirname, '/plugins/less.min.js'));
+     addCss(path.resolve(dirPath, './resources/color.less'));
+     window.less = require(path.resolve(dirPaths, './resources/less.min.js'));
      window.less.sheets.push(path.join(__dirname, '/plugins/color.less'));
      window.less.refresh();
     </script>
