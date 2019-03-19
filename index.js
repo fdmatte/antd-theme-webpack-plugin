@@ -40,7 +40,7 @@ class AntDesignThemePlugin {
     
      addCss(path.resolve(dirPath, './resources/color.less'));
      window.less = require(path.resolve(dirPaths, './resources/less.min.js'));
-     window.less.sheets.push(path.join(__dirname, '/plugins/color.less'));
+     window.less.sheets.push(path.join(__dirname, './resources/color.less'));
      window.less.refresh();
     </script>
         `;
@@ -53,7 +53,7 @@ class AntDesignThemePlugin {
 
         if (!content.match(/\/color\.less/g)) {
           index.source = () =>
-            content.replace(less, "").replace(/<body>/gi, `<body>${less}`);
+            content.replace(less, "").replace(/</body>/gi, `${less}</body>`);
           content = index.source();
           index.size = () => content.length;
         }
