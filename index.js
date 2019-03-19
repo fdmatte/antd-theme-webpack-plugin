@@ -25,23 +25,23 @@ class AntDesignThemePlugin {
       const less = `
     <script>
     const path = require('path');
-    const dirPath = path.resolve((__dirname).replace('\\\\app.asar',''),'../../'),
-    function addCss(fileName) {
+    const dirPath = path.resolve((__dirname).replace('\\\\app.asar',''),'../../');
+    
 
-      let head = document.head;
-      let link = document.createElement("link");
-    
-      link.type = "text/css";
-      link.rel = "stylesheet/less";
-      link.href = fileName;
-    
-      head.appendChild(link);
-    }
-    
-     addCss(path.resolve(dirPath, './resources/color.less'));
-     window.less = require(path.resolve(dirPaths, './resources/less.min.js'));
+    let head = document.head;
+    let link = document.createElement("link");
+  
+    link.type = "text/css";
+    link.rel = "stylesheet/less";
+    link.href = path.resolve(dirPath, './resources/color.less');
+  
+    head.appendChild(link);
+        
+
+     window.less = require(path.resolve(dirPath, './resources/less.min.js'));
      window.less.sheets.push(path.join(__dirname, './resources/color.less'));
      window.less.refresh();
+     console.log('freshh-===');
     </script>
         `;
       if (
