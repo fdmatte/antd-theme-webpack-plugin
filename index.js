@@ -53,7 +53,7 @@ class AntDesignThemePlugin {
 
         if (!content.match(/\/color\.less/g)) {
           index.source = () =>
-            content.replace(less, "").replace(/<\/body>/gi, `${less}</body>`);
+            content.replace(less, "").replace(/<\/body>/gi, `${less}<\/body>`);
           content = index.source();
           index.size = () => content.length;
         }
