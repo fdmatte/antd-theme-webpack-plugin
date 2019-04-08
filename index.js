@@ -23,26 +23,14 @@ class AntDesignThemePlugin {
     const options = this.options;
     compiler.plugin("emit", (compilation, callback) => {
       const less = `
+    <link rel="stylesheet/less" type="text/css" href="${process.env.settingAppPath}${options.publicPath}" />
     <script>
-    const path = require('path');
-    const dirPath = path.resolve((__dirname).replace('\\\\app.asar',''),'../../');
-    
-
-    let head = document.head;
-    let link = document.createElement("link");
-  
-    link.type = "text/css";
-    link.rel = "stylesheet/less";
-    link.href = path.resolve(dirPath, './resources/color.less');
-  
-    head.appendChild(link);
-        
-
-     window.less = require(path.resolve(dirPath, './resources/less.min.js'));
-     window.less.sheets.push(path.join(__dirname, './resources/color.less'));
-     window.less.refresh();
-     console.log('freshh-===');
+      window.less = {
+        async: false,
+        env: 'production'
+      };
     </script>
+    <script type="text/javascript" src="${process.env.settingAppPath}${options.lessUrl}"></script>
         `;
       if (
         options.indexFileName &&
